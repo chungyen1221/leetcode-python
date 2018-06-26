@@ -439,12 +439,79 @@ class Solution:
 ```
 ---
 
+## 20. Valid Parentheses
+Given a string containing just the characters '(', ')', '{', '}', '[' and ']', determine if the input string is valid.
 
+An input string is valid if:
 
+Open brackets must be closed by the same type of brackets.
+Open brackets must be closed in the correct order.
+Note that an empty string is also considered valid.
 
+Example 1:
+```
+Input: "()"
+Output: true
+```
+Example 2:
+```
+Input: "()[]{}"
+Output: true
+```
+Example 3:
+```
+Input: "(]"
+Output: false
+```
+Example 4:
+```
+Input: "([)]"
+Output: false
+```
+Example 5:
+```
+Input: "{[]}"
+Output: true
+```
 
+### solution
+```python
+class Solution:
+    def isValid(self, s):
+        """
+        :type s: str
+        :rtype: bool
+        """
+        # use stack to solve the problem 
+        # if when the left side ends, the first right side must be pair with the last left side
 
-
+        # must be pair
+        l_s = len(s)
+        if l_s == 0:
+            return True
+        elif l_s % 2 != 0:
+            return False
+        
+        stack = [] # make stack
+        v_dic = {  ")":"(",   "]":"[",   "}":"{"  } # mapping
+        
+        if s[0] not in v_dic.values():
+            return False
+        
+        for char in s: 
+            if char in v_dic.values():
+                stack.append(char)
+            elif char in v_dic.keys():
+                if v_dic[char] != stack.pop():
+                    return False
+            else: 
+                return False
+        if stack == []:
+            return True
+        else:
+            return False
+```
+---
 
 
 
