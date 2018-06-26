@@ -326,7 +326,7 @@ hint: unable to use list(root)
 ['i am king of the world']
 ```
 
-### solution
+### solution - BFS
 ```python
 # Definition for a binary tree node.
 # class TreeNode:
@@ -358,6 +358,35 @@ class Solution:
             res.append(tmp_res)
             q = tmp_q
         return res
+```
+
+### solution - DFS
+```python
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+
+class Solution:
+    def levelOrder(self, root):
+        """
+        :type root: TreeNode
+        :rtype: List[List[int]]
+        """
+        res = []
+        depth = 0
+        self.dfs(root, depth, res)
+        return res
+    def dfs(self, tmp_root, tmp_depth, tmp_res):
+        if tmp_root == None:
+            return tmp_res
+        if len(tmp_res) < tmp_depth + 1:
+            tmp_res.append([])
+        tmp_res[tmp_depth].append(tmp_root.val)
+        self.dfs(tmp_root.left, tmp_depth+1, tmp_res)
+        self.dfs(tmp_root.right, tmp_depth+1, tmp_res)
 ```
 ---
 
