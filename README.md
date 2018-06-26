@@ -325,7 +325,7 @@ hint: unable to use list(root)
 >>> [a]
 ['i am king of the world']
 ```
-![tt](./Screen Shot 2018-06-26 at 22.14.20.png)
+![tt](BFS-DFS.png)
 
 ### solution - BFS
 ```python
