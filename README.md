@@ -406,7 +406,7 @@ Explanation:
   5     4       <---
 ```
 
-### solution - DFS
+### solution - BFS
 ```python
 # Definition for a binary tree node.
 # class TreeNode:
