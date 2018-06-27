@@ -865,6 +865,45 @@ class Solution:
 ```
 ---
 
+## 49. Group Anagrams
+Given an array of strings, group anagrams together.
+
+Example:
+```
+Input: ["eat", "tea", "tan", "ate", "nat", "bat"],
+Output:
+[
+  ["ate","eat","tea"],
+  ["nat","tan"],
+  ["bat"]
+]
+```
+Note:
+
+All inputs will be in lowercase.
+The order of your output does not matter.
+### solution
+```python
+class Solution:
+    def groupAnagrams(self, strs):
+        """
+        :type strs: List[str]
+        :rtype: List[List[str]]
+        """
+        """
+        I am going to put strs in dict value, and sorted key
+        """
+        ans = {}
+        for s in strs:
+            s_s = ''.join(sorted(s))        # make list to string since sorted generates list
+            if s_s not in ans.keys():
+                ans[s_s] = []
+            ans[s_s].append(s)
+        return list(ans.values())
+                
+```
+---
+
 
 
 
