@@ -513,6 +513,69 @@ class Solution:
 ```
 ---
 
+## 200. Number of Islands
+Given a 2d grid map of '1's (land) and '0's (water), count the number of islands. An island is surrounded by water and is formed by connecting adjacent lands horizontally or vertically. You may assume all four edges of the grid are all surrounded by water.
+
+Example 1:
+```
+Input:
+11110
+11010
+11000
+00000
+
+Output: 1
+```
+Example 2:
+```
+Input:
+11000
+11000
+00100
+00011
+
+Output: 3
+```
+### solution
+```python
+class Solution:
+    def numIslands(self, grid):
+        """
+        :type grid: List[List[str]]
+        :rtype: int
+        """
+        """
+        Use DFS, once it touch 1s, continue to search near part form up/down/left/right
+        count of island + 1
+        And then change the sysbol to anaother for avoiding next search
+        """
+        count = 0
+        if not grid:
+            return 0
+        range_x = range(len(grid))     # range for x axis
+        range_y = range(len(grid[0]))        # range for y axis
+        #print("{},{}".format(range_x, range_y))
+        for x in range_x:
+            for y in range_y:
+                if grid[x][y] == '1':
+                    count += 1          # find an island
+                    self.dfs(grid, x, y)
+        return count
+    
+    def dfs(self, tmp_grid, tmp_x, tmp_y):
+        print("{},{}".format(tmp_x, tmp_y))
+        if tmp_x < 0 or tmp_x >= len(tmp_grid) or tmp_y < 0 or tmp_y >= len(tmp_grid[0]) :
+            return
+        if tmp_grid[tmp_x][tmp_y] != '1':
+            return
+        tmp_grid[tmp_x][tmp_y] = "E"            # change to anather symbol
+        self.dfs(tmp_grid, tmp_x - 1, tmp_y)    # change neighborhood -x direction
+        self.dfs(tmp_grid, tmp_x + 1, tmp_y)    # change neighborhood x direction
+        self.dfs(tmp_grid, tmp_x, tmp_y - 1)    # change neighborhood -y direction
+        self.dfs(tmp_grid, tmp_x, tmp_y + 1)    # change neighborhood y direction
+ ```
+ ---
+
 
 
 
