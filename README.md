@@ -904,7 +904,51 @@ class Solution:
 ```
 ---
 
+## 5. Longest Palindromic Substring
+Given a string s, find the longest palindromic substring in s. You may assume that the maximum length of s is 1000.
 
+Example 1:
+```
+Input: "babad"
+Output: "bab"
+Note: "aba" is also a valid answer.
+```
+Example 2:
+```
+Input: "cbbd"
+Output: "bb"
+```
+### solution
+```python
+class Solution:
+    def longestPalindrome(self, s):
+        """
+        :type s: str
+        :rtype: str
+        """
+        """
+        palindrome has two conditions: 1. odd charactors 2. even charactors
+        """
+        res = ""
+        for i in range(len(s)):
+            # find center odd
+            tmp_res = self.helper(s, i, i)
+            if len(tmp_res) > len(res):
+                res = tmp_res
+            # find center even
+            tmp_res = self.helper(s, i , i+1)
+            if len(tmp_res) > len(res):
+                res = tmp_res
+        return res
+    def helper(self, s, i, j):
+        ss = ''
+        while (i >= 0) and (j <= len(s)-1) and (s[i] == s[j]):
+            ss = s[i : j+1]
+            i = i - 1
+            j = j + 1
+        return ss
+```
+---
 
 
 
