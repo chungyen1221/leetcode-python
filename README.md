@@ -632,8 +632,34 @@ A linked list can be reversed either iteratively or recursively. Could you imple
 
 ### solution
 ```
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.next = None
 
+class Solution:
+    def reverseList(self, head):
+        """
+        :type head: ListNode
+        :rtype: ListNode
+        """
+        if head == None:
+            return head
+        new_head = head
+        while head.next != None:
+            curr = head.next 
+            head.next = curr.next
+            curr.next = new_head
+            new_head = curr
+        return new_head
 ```
 ---
 
+## 
 
+### solution
+```
+
+```
+---
