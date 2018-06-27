@@ -626,7 +626,7 @@ Output: 5->4->3->2->1->NULL
 Follow up:
 
 A linked list can be reversed either iteratively or recursively. Could you implement both?
-```
+
 [一圖勝千言](https://www.polarxiong.com/archives/LeetCode-206-reverse-linked-list.html)
-```
+
 
