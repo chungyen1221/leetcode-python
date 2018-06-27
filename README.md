@@ -631,7 +631,7 @@ A linked list can be reversed either iteratively or recursively. Could you imple
 [一圖勝千言](https://www.polarxiong.com/archives/LeetCode-206-reverse-linked-list.html)
 
 ### solution
-```
+```python
 # Definition for singly-linked list.
 # class ListNode:
 #     def __init__(self, x):
@@ -659,7 +659,7 @@ class Solution:
 ## 
 
 ### solution
-```
+```python
 
 ```
 ---
