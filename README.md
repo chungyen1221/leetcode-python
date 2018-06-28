@@ -950,7 +950,55 @@ class Solution:
 ```
 ---
 
+## 78. Subsets
+Given a set of distinct integers, nums, return all possible subsets (the power set).
 
+Note: The solution set must not contain duplicate subsets.
+
+Example:
+```
+Input: nums = [1,2,3]
+Output:
+[
+  [3],
+  [1],
+  [2],
+  [1,2,3],
+  [1,3],
+  [2,3],
+  [1,2],
+  []
+]
+```
+### solution
+```python
+"""
+DFS : for example [1,2,3], dirction: each element
+                           [ ]
+                        /   |   \
+                     [1]   [2]   [3]
+                   /  |     |
+            [1, 2] [1, 3] [2, 3]
+              /
+        [1, 2, 3]
+"""
+class Solution:
+    def subsets(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: List[List[int]]
+        """
+        if not nums:
+            return []
+        res=[[]]
+        self.dfs(sorted(nums), 0, [], res)
+        return res
+    def dfs(self, nums, depth, node, res):
+        for i in range(depth, len(nums)):
+            res.append(node + [nums[i]])
+            self.dfs(nums, i+1, node + [nums[i]], res)
+```
+---
 
 
 
