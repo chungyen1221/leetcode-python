@@ -1503,7 +1503,63 @@ class Solution:
 ```
 ---
 
+## 494. Target Sum
+You are given a list of non-negative integers, a1, a2, ..., an, and a target, S. Now you have 2 symbols + and -. For each integer, you should choose one from + and - as its new symbol.
 
+Find out how many ways to assign symbols to make sum of integers equal to target S.
+
+Example 1:
+```
+Input: nums is [1, 1, 1, 1, 1], S is 3. 
+Output: 5
+Explanation: 
+
+-1+1+1+1+1 = 3
++1-1+1+1+1 = 3
++1+1-1+1+1 = 3
++1+1+1-1+1 = 3
++1+1+1+1-1 = 3
+
+There are 5 ways to assign symbols to make the sum of nums be target 3.
+```
+Note:
+The length of the given array is positive and will not exceed 20.
+The sum of elements in the given array will not exceed 1000.
+Your output answer is guaranteed to be fitted in a 32-bit integer.
+### solution
+```python
+class Solution:
+    def findTargetSumWays(self, nums, S):
+        """
+        :type nums: List[int]
+        :type S: int
+        :rtype: int
+        """
+        """
+        # define the root is 0 and binary tree with two direction + and -
+        root = 0
+        C = collections.Counter()
+        self.helper(nums, 0, root, C)
+        return C[S]
+    def helper(self, nums, depth, root, C):
+        if len(nums) == depth:
+            C[root] += 1
+            return
+        self.helper(nums, depth+1, root+nums[depth], C)
+        self.helper(nums, depth+1, root-nums[depth], C)
+        """
+        # 一般能用dfs解決的題目，如果題目只要求滿足條件的數字，非遍歷所有結果，dfs會超時。
+        # 解決方法其實基本只有一條路：動態規劃 DP。
+        # 設一個數組，數組中保存的是字典，字典保存的是該index下的能求得的和為某個數的個數。所以從左到右進行遍歷，在每個位置都把前一個位置的字典拿出來，看前一個位置的所有能求得的和。和當前的數值分別進行加減操作，就能得出新一個位置能求得的和了。要注意一點是，dp初始不能採用下面方式： dp = [collections.defaultdict(int)] * (_len + 1)
+        C = [collections.defaultdict(int) for _ in range(len(nums)+1)]     # make list of dict
+        C[0][0] = 1     # zero layer has only one way
+        for i, j  in enumerate(nums, start=1):
+            for res, cnt in C[i-1].items():
+                C[i][res + j] += cnt
+                C[i][res - j] += cnt
+        return C[len(nums)][S]
+```
+---
 
 
 
