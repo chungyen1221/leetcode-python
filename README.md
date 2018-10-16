@@ -1721,6 +1721,42 @@ class Solution:
             return res
 ```
 ---
+## 93. Restore IP Addresses
+Given a string containing only digits, restore it by returning all possible valid IP address combinations.
+
+Example:
+```
+Input: "25525511135"
+Output: ["255.255.11.135", "255.255.111.35"]
+```
+### solution
+```python
+class Solution:
+    def restoreIpAddresses(self, s):
+        """
+        :type s: str
+        :rtype: List[str]
+        """
+        res = []
+        if len(s) > 12:
+            return res         # max for IPv4 is 12 digits
+        self.dfs(s, 0, "", res)
+        return res
+    def dfs(self, ss, IP_index, IP_tmp, res):
+        if IP_index == 4:
+            if not ss:
+                res.append(IP_tmp[:-1])  # take off the '.' in the last
+            return
+        for i in range(1, 4): # only three digits
+            if i <= len(ss) : # avoid the condition such as i=3 but len(ss)=2
+                if i == 1:    # for "0000"
+                    self.dfs(ss[i:], IP_index+1, IP_tmp+ss[:i]+'.', res )
+                elif ss[0] != '0' and int(ss[:i]) <= 255:
+                    self.dfs(ss[i:], IP_index+1, IP_tmp+ss[:i]+'.', res )
+```
+---
+
+
 
 
 
